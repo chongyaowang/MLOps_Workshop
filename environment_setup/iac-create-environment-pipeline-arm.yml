@@ -13,14 +13,13 @@ stages:
     pool: myagent
     timeoutInMinutes: 0
     steps:
-    - task: AzureResourceGroupDeployment@2
+    - task: GitHubRelease@1
       inputs:
-        azureSubscription: '$(AZURE_RM_SVC_CONNECTION)'
-        action: 'Create Or Update Resource Group'
-        resourceGroupName: '$(RESOURCE_GROUP)'
-        location: $(LOCATION)
-        templateLocation: 'Linked artifact'
-        csmFile: '$(Build.SourcesDirectory)/environment_setup/cloud-environment.json'
-        overrideParameters: '-baseName $(BASE_NAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME)'
-        deploymentMode: 'Incremental'
-      displayName: 'Deploy OH resources to Azure'
+        gitHubConnection: 'chongyaowang'
+        repositoryName: 'chongyaowang/MLOps_Workshop'
+        action: 'edit'
+        target: '$(Build.SourceVersion)'
+        tag: '$(myTagName)'
+        changeLogCompareToRelease: 'lastFullRelease'
+        changeLogType: 'commitBased'
+    
