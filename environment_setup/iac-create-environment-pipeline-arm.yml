@@ -19,7 +19,6 @@ stages:
         repositoryName: 'chongyaowang/MLOps_Workshop'
         action: 'edit'
         target: '$(Build.SourceVersion)'
-        tag: '$(myTagName)'
         changeLogCompareToRelease: 'lastFullRelease'
         changeLogType: 'commitBased'
     
